@@ -327,9 +327,8 @@ exports.Document = function() {
 		  }
 		});
 	}
-	
-	this.save = function(filepath, err){
-		
+
+	this.generate = function() {
 		var template = fs.readFileSync(__dirname + "/template.docx","binary");
 		var zip = new JSZip(template);
 		var filesToSave = {};
@@ -391,6 +390,12 @@ exports.Document = function() {
 		doc.render();
 		
 		var buf = doc.getZip().generate({type:"nodebuffer"});
+		
+		return buff;
+	}
+	
+	this.save = function(filepath, err){
+		var buf = this.generate();
 		fs.writeFile(filepath,buf, err);
 	}
 }

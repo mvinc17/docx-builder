@@ -391,7 +391,7 @@ exports.Document = function() {
 		
 		var buf = doc.getZip().generate({type:"nodebuffer"});
 		
-		return buff;
+		return buf;
 	}
 	
 	this.save = function(filepath, err){
